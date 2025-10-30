@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+    <!-- Hero Section -->
+    <div class="text-center p-5 mb-5 bg-light rounded-3">
+        <h1 class="display-4 fw-bold">Barry Oumar</h1>
+        <p class="fs-4">Chemical Engineer & Aspiring Web Developer</p>
+        <p class="lead">Bridging the gap between physical processes and digital solutions.</p>
+        <a href="{{ url_for('projects') }}" class="btn btn-primary btn-lg mt-3" aria-label="View My Work">View My Work</a>
+        <a href="{{ url_for('contact') }}" class="btn btn-outline-secondary btn-lg mt-3" aria-label="Get in Touch">Get in Touch</a>
+    </div>
+
+    <!-- About Me Section -->
+    <section class="mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2 class="mb-3">About Me</h2>
+                <p>
+                    I am passionate about science and technology, combining my background in chemical engineering with a strong interest in web development. I enjoy solving real-world problems and creating digital solutions that make a difference.
+                </p>
+                <a href="{{ url_for('about') }}" class="btn btn-outline-primary mt-2" aria-label="Learn more about me">Learn more about me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Summary Section -->
+    <section class="mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2 class="mb-3">Skills</h2>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    {% for skill in skills %}
+                        <span class="badge 
+                            {% if skill.category == 'Programming' %}bg-primary
+                            {% elif skill.category == 'Data' %}bg-info text-dark
+                            {% elif skill.category == 'Process' %}bg-warning text-dark
+                            {% elif skill.category == 'Soft' %}bg-dark
+                            {% else %}bg-secondary{% endif %} mb-1">
+                            {{ skill.name }}
+                        </span>
+                    {% endfor %}
+                </div>
+                <a href="{{ url_for('resume') }}" class="btn btn-outline-primary mt-3" aria-label="View my resume">View my resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <h2 class="text-center mb-4">Featured Projects</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for project in projects %}
+            <div class="col">
+                <div class="card h-100 shadow-sm border-primary">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <span class="fw-bold">{{ project.title }}</span>
+                        <span class="badge bg-secondary">{{ project.year }}</span>
+                    </div>
+                    <img src="{{ url_for('static', filename='images/' + project.image_file) if project.image_file else 'https://via.placeholder.com/400x300.png?text=Project+Image' }}" class="card-img-top" alt="{{ project.title }}">
+                    <div class="card-body">
+                        <p class="card-text mb-2">{{ project.short_description }}</p>
+                        <p class="mb-1">
+                            <span class="badge bg-info text-dark"><i class="bi bi-tools"></i> {{ project.technologies }}</span>
+                        </p>
+                        {% if not project.project_url %}
+                            <span class="badge bg-warning text-dark"><i class="bi bi-mortarboard"></i> Academic Project</span>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pb-3 text-end">
+                        {% if project.project_url %}
+                            <a href="{{ project.project_url }}" class="btn btn-outline-dark btn-sm" target="_blank" aria-label="Learn more about {{ project.title }}">
+                                <i class="bi bi-box-arrow-up-right"></i> Learn More
+                            </a>
+                        {% else %}
+                            <span class="text-muted small">No external link</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center">Projects will be featured here soon.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Call to Action Footer -->
+    <section class="mt-5 text-center">
+        <h3 class="mb-3">Interested in collaborating?</h3>
+        <a href="{{ url_for('contact') }}" class="btn btn-lg btn-success" aria-label="Contact me">Contact me</a>
+    </section>
+{% endblock %}

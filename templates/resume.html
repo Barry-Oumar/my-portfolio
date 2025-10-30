@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}Resume{% endblock %}
+
+{% block main %}
+<h2 class="mb-4 text-center">Resume</h2>
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="mb-3">Education</h3>
+        {% for entry in education %}
+            <div class="card mb-3 border-info">
+                <div class="row g-0 align-items-center">
+                    <div class="col-auto px-3">
+                        {% if entry.logo %}
+                            <img src="{{ url_for('static', filename='images/' + entry.logo) }}" alt="Logo" style="height:48px;max-width:70px;">
+                        {% endif %}
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-2">
+                            <h5 class="card-title mb-1">{{ entry.title }}</h5>
+                            <h6 class="card-subtitle mb-1 text-muted">{{ entry.institution }}</h6>
+                            <span class="badge bg-secondary mb-2">{{ entry.period }}</span>
+                            <p class="card-text small">{{ entry.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>No education entries found.</p>
+        {% endfor %}
+    </div>
+    <div class="col-md-6">
+        <h3 class="mb-3">Experience</h3>
+        {% for entry in experience %}
+            <div class="card mb-3 border-success">
+                <div class="row g-0 align-items-center">
+                    <div class="col-auto px-3">
+                        {% if entry.logo %}
+                            <img src="{{ url_for('static', filename='images/' + entry.logo) }}" alt="Logo" style="height:48px;max-width:70px;">
+                        {% endif %}
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-2">
+                            <h5 class="card-title mb-1">{{ entry.title }}</h5>
+                            <h6 class="card-subtitle mb-1 text-muted">{{ entry.institution }}</h6>
+                            <span class="badge bg-secondary mb-2">{{ entry.period }}</span>
+                            <p class="card-text small">{{ entry.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>No experience entries found.</p>
+        {% endfor %}
+        <h3 class="mb-3 mt-4">Skills</h3>
+        <div class="d-flex flex-wrap gap-2">
+            {% for skill in skills %}
+                <span class="badge 
+                    {% if skill.category == 'Programming' %}bg-primary
+                    {% elif skill.category == 'Data' %}bg-info text-dark
+                    {% elif skill.category == 'Process' %}bg-warning text-dark
+                    {% elif skill.category == 'Soft' %}bg-dark
+                    {% else %}bg-secondary{% endif %} mb-1">
+                    {{ skill.name }}
+                </span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

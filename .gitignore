@@ -1,0 +1,13 @@
+# Dossier de l'environnement virtuel
+my_env/
+venv/
+
+# Dossier de build (sera généré)
+build/
+
+# Dossiers de cache Python
+__pycache__/
+*.pyc
+
+# Fichiers de configuration VS Code
+.vscode/
