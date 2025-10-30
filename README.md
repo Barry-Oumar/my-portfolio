@@ -1,6 +1,5 @@
 # Barry Oumar Portfolio Web application with Flask
 
-#### Video Demo:  https://youtu.be/y52nrHBGFiE
 
 #### Description:
 
