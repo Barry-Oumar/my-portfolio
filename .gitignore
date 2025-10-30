@@ -1,6 +1,6 @@
 # Dossier de l'environnement virtuel
 my_env/
-venv/
+.venv/
 
 # Dossier de build (sera généré)
 build/
