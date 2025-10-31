@@ -1,54 +1,38 @@
-:root {
-    --primary-color: #0d6efd;
-    --secondary-color: #6c757d;
-    --dark-color: #212529;
-    --light-color: #f8f9fa;
-    --font-primary: 'Montserrat', sans-serif;
-    --font-secondary: 'Lato', sans-serif;
-    --border-radius: 0.375rem;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+css
+/* Use the professional fonts imported in layout.html /
 body {
-    font-family: var(--font-secondary);
-    background-color: #ffffff;
-    color: var(--dark-color);
+font-family: 'Lato', sans-serif;
+background-color: #f8f9fa; / A very light grey background */
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-primary);
-    font-weight: 700;
+font-family: 'Montserrat', sans-serif;
 }
-.section-title {
-    margin-bottom: 3rem;
+/* Navbar Styling */
+.navbar-brand {
+font-weight: 700;
+font-size: 1.5rem;
 }
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+.nav-link {
+font-weight: 700;
 }
-.fade-in-section.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+/* Project Card Styling */
+.project-card {
+transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+border: none;
 }
-.navbar {
-    transition: box-shadow 0.3s ease-in-out;
+.project-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-.card {
-    border: 1px solid #e9ecef;
-    border-radius: var(--border-radius);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+.project-card img {
+height: 220px;
+object-fit: cover; /* Ensures images are not distorted */
 }
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
+/* Resume Section Styling */
+.resume-section h2 {
+color: #343a40;
 }
-.card img {
-    object-fit: cover;
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
-}
-.skill-badge {
-    font-size: 0.9rem;
-    padding: 0.5em 0.9em;
-    margin: 0.2em;
-    font-weight: 500;
+.resume-section .fas {
+margin-right: 10px;
+color: #0d6efd; /* Bootstrap primary color */
 }
