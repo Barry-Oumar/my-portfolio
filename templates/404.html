@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
-{% block title %}404 Not Found{% endblock %}
+
+{% block title %}404 - Page non trouvée{% endblock %}
+
 {% block main %}
 <div class="text-center py-5">
-    <h1 class="display-4 text-danger">404</h1>
-    <p class="lead">Sorry, the page you are looking for does not exist.</p>
-    <a href="{{ url_for('index') }}" class="btn btn-primary mt-3">Go Home</a>
+    <h1 class="display-1 text-primary">404</h1>
+    <h2>Page non trouvée</h2>
+    <p class="lead">Désolé, la page que vous cherchez n'existe pas ou a été déplacée.</p>
+    <a href="{{ url_for('index') }}" class="btn btn-primary mt-3">Retour à l'accueil</a>
 </div>
 {% endblock %}

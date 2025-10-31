@@ -1,44 +1,39 @@
 {% extends "layout.html" %}
 
-{% block title %}Projects{% endblock %}
+{% block title %}Projets{% endblock %}
 
 {% block main %}
-    <div class="text-center mb-5">
-        <h1>My Projects</h1>
-        <p class="lead">A collection of my academic, personal, and professional work.</p>
-    </div>
+
+    <header class="text-center mb-5 fade-in-section is-visible">
+        <h1 class="section-title">Mes Projets</h1>
+        <p class="lead">Une collection de mes travaux académiques, personnels et professionnels.</p>
+    </header>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for project in projects %}
-            <div class="col">
-                <div class="card h-100 shadow-sm border-primary">
-                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                        <span class="fw-bold">{{ project.title }}</span>
-                        <span class="badge bg-secondary">{{ project.year }}</span>
-                    </div>
-                    <img src="{{ url_for('static', filename='images/' + project.image_file) if project.image_file else 'https://via.placeholder.com/400x300.png?text=Project+Image' }}" class="card-img-top" alt="{{ project.title }}">
-                    <div class="card-body">
-                        <p class="card-text mb-2">{{ project.short_description }}</p>
-                        <p class="mb-1">
-                            <span class="badge bg-info text-dark"><i class="bi bi-tools"></i> {{ project.technologies }}</span>
-                        </p>
-                        {% if not project.project_url %}
-                            <span class="badge bg-warning text-dark"><i class="bi bi-mortarboard"></i> Academic Project</span>
-                        {% endif %}
-                    </div>
-                    <div class="card-footer bg-transparent border-0 pb-3 text-end">
-                        {% if project.project_url %}
-                            <a href="{{ project.project_url }}" class="btn btn-outline-dark btn-sm" target="_blank" aria-label="Learn more about {{ project.title }}">
-                                <i class="bi bi-box-arrow-up-right"></i> Learn More
-                            </a>
-                        {% else %}
-                            <span class="text-muted small">No external link</span>
-                        {% endif %}
-                    </div>
+        <article class="col fade-in-section">
+            <div class="card h-100">
+                {% if project.image_file %}
+                <img src="{{ url_for('static', filename=project.image_file) }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px;">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text small text-muted mb-2">{{ project.type }} - {{ project.year }}</p>
+                    <p class="card-text flex-grow-1">{{ project.short_description }}</p>
+                    <p class="small"><strong>Technologies :</strong> {{ project.technologies }}</p>
                 </div>
+                {% if project.project_url %}
+                <div class="card-footer bg-white border-0 text-end">
+                    <a href="{{ project.project_url }}" class="btn btn-outline-dark btn-sm" target="_blank">
+                        <i class="bi bi-github"></i> Voir sur GitHub
+                    </a>
+                </div>
+                {% endif %}
             </div>
+        </article>
         {% else %}
-            <p class="text-center">Projects will be featured here soon.</p>
+        <p class="text-center">Pas de projets à afficher pour le moment.</p>
         {% endfor %}
     </div>
+
 {% endblock %}
