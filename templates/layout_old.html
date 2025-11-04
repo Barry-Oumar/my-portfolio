@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <title>{% block title %}{% endblock %} | {{ me.name }}</title>
     <meta name="description" content="Portfolio de {{ me.name }}, {{ me.headline }}. Découvrez mes projets en simulation, modélisation et développement web.">
     <meta name="author" content="{{ me.name }}">
@@ -22,15 +22,8 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- Scroll Progress Bar -->
-    <div id="scroll-progress-bar"></div>
-
-    <!-- Custom Cursor -->
-    <div id="custom-cursor"></div>
-    <div id="custom-cursor-dot"></div>
-
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm sticky-top" id="main-navbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url_for('index') }}">{{ me.name }}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
@@ -56,24 +49,14 @@
     <footer class="text-center py-4 mt-auto bg-light">
         <div class="container">
             <p class="mb-2">© 2025 {{ me.name }}. Tous droits réservés.</p>
-            <div class="mb-3">
+            <div>
                 <a href="https://www.linkedin.com/in/oumar-barry-0876a12a3" class="text-dark mx-2" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
                 <a href="https://github.com/oumarbarry" class="text-dark mx-2" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
             </div>
-            <!-- Dark Mode Toggle -->
-            <button id="theme-toggle" class="btn btn-outline-secondary btn-sm" aria-label="Toggle dark mode">
-                <i class="bi bi-moon-stars" id="theme-icon"></i>
-            </button>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Typed.js for typewriter effect -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/navbar-scroll.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/custom-cursor.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/dark-mode.js') }}"></script>
-    {% block extra_scripts %}{% endblock %}
 </body>
 </html>

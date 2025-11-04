@@ -7,10 +7,7 @@
     <section class="text-center py-5 fade-in-section is-visible">
         <img src="{{ url_for('static', filename=me.photo) }}" alt="Photo de {{ me.name }}" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
         <h1 class="display-4 fw-bold">{{ me.name }}</h1>
-        <!-- Typewriter Effect Container -->
-        <p class="fs-4 text-muted">
-            <span id="typewriter-text"></span>
-        </p>
+        <p class="fs-4 text-muted">{{ me.headline }}</p>
         <p class="lead col-md-8 mx-auto">{{ me.hero_intro }}</p>
         <div class="mt-4">
             <a href="{{ url_for('projects') }}" class="btn btn-primary btn-lg">Découvrir mes projets</a>
@@ -24,11 +21,9 @@
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 {% for project in featured_projects %}
                 <article class="col">
-                    <div class="card h-100 project-card">
+                    <div class="card h-100">
                         {% if project.image_file %}
-                        <div class="card-img-wrapper">
-                            <img src="{{ url_for('static', filename=project.image_file) }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px;">
-                        </div>
+                        <img src="{{ url_for('static', filename=project.image_file) }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px;">
                         {% endif %}
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ project.title }}</h5>
@@ -53,26 +48,4 @@
         </div>
     </section>
 
-{% endblock %}
-
-{% block extra_scripts %}
-<script>
-    // Initialize Typed.js for typewriter effect
-    document.addEventListener('DOMContentLoaded', function() {
-        var typed = new Typed('#typewriter-text', {
-            strings: [
-                'Ingénieur en Génie Chimique',
-                'Développeur Web Full-Stack',
-                'Spécialiste en Simulation & Modélisation'
-            ],
-            typeSpeed: 60,
-            backSpeed: 40,
-            backDelay: 2000,
-            startDelay: 500,
-            loop: true,
-            showCursor: true,
-            cursorChar: '|'
-        });
-    });
-</script>
 {% endblock %}

@@ -1,0 +1,28 @@
+/MON_PORTFOLIO/
+|
+|-- .github/workflows/
+|   |-- deploy.yml                 
+|
+|-- static/
+|   |-- styles.css
+|   |-- js/
+|   |   |-- animations.js
+|   |-- images/
+|   |   |-- (Vos images de projet, logos, etc.)
+|   |-- cv/
+|   |   |-- Oumar_BARRY_CV.pdf
+|
+|-- templates/
+|   |-- layout.html
+|   |-- index.html
+|   |-- projects.html
+|   |-- resume.html
+|   |-- contact.html
+|   |-- 404.html
+|
+|-- app.py
+|-- data.py
+|-- freeze.py
+|-- requirements.txt
+|-- .gitignore
+|-- README.md
