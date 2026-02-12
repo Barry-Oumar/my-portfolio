@@ -2,77 +2,227 @@
 
 {% block title %}Accueil{% endblock %}
 
-{% block main %}
+{% block content %}
 
-    <section class="text-center py-5 fade-in-section is-visible">
-        <img src="{{ url_for('static', filename=me.photo) }}" alt="Photo de {{ me.name }}" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-        <h1 class="display-4 fw-bold">{{ me.name }}</h1>
-        <!-- Typewriter Effect Container -->
-        <p class="fs-4 text-muted">
-            <span id="typewriter-text"></span>
-        </p>
-        <p class="lead col-md-8 mx-auto">{{ me.hero_intro }}</p>
-        <div class="mt-4">
-            <a href="{{ url_for('projects') }}" class="btn btn-primary btn-lg">Découvrir mes projets</a>
-            <a href="{{ url_for('contact') }}" class="btn btn-outline-secondary btn-lg">Me contacter</a>
+<!-- Hero Section - Full Screen -->
+<section class="hero-fullscreen">
+    <div class="hero-background">
+        <!-- Overlay gradient -->
+        <div class="hero-overlay"></div>
+        <!-- Optional: Background image -->
+        {% set hero_bg = url_for('static', filename='images/hero-bg.jpg') %}
+        <div class="hero-image" style="background-image: url('{{ hero_bg }}');"></div>
+    </div>
+
+    <div class="hero-content">
+        <h1 class="hero-title">
+            TRANSFORMER LES DÉFIS<br>
+            INDUSTRIELS EN<br>
+            <span class="hero-highlight">SOLUTIONS INNOVANTES</span>
+        </h1>
+        <p class="hero-subtitle">{{ me.hero_description }}</p>
+
+        <div class="hero-cta">
+            <a href="#projects" class="btn-hero-primary">
+                Découvrir mes projets
+                <i class="bi bi-arrow-down-short"></i>
+            </a>
         </div>
-    </section>
+    </div>
 
-    <section class="py-5 bg-light fade-in-section">
-        <div class="container">
-            <h2 class="text-center section-title">Projets Récents</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                {% for project in featured_projects %}
-                <article class="col">
-                    <div class="card h-100 project-card">
-                        {% if project.image_file %}
-                        <div class="card-img-wrapper">
-                            <img src="{{ url_for('static', filename=project.image_file) }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px;">
-                        </div>
-                        {% endif %}
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ project.title }}</h5>
-                            <p class="card-text small text-muted mb-2">{{ project.type }} - {{ project.year }}</p>
-                            <p class="card-text flex-grow-1">{{ project.short_description }}</p>
-                            <p class="small"><strong>Technologies :</strong> {{ project.technologies }}</p>
-                        </div>
+    <!-- Scroll Down Indicator -->
+    <div class="scroll-indicator">
+        <span>scroll down</span>
+        <div class="scroll-arrow">
+            <i class="bi bi-arrow-down"></i>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section-light">
+    <div class="container-section">
+        <div class="section-header">
+            <span class="section-label">Qui suis-je</span>
+            <h2 class="section-title">{{ me.name }}</h2>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="{{ url_for('static', filename=me.photo) }}" alt="{{ me.name }}" loading="lazy">
+                <div class="about-card">
+                    <h4>{{ me.title }}</h4>
+                    <p>{{ me.subtitle }}</p>
+                </div>
+            </div>
+
+            <div class="about-content">
+                <h3 class="about-heading">Passionné par l'innovation technique</h3>
+                <p class="about-text">{{ me.about_text }}</p>
+
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">{{ projects|length }}+</span>
+                        <span class="stat-label">Projets réalisés</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ skills|length }}</span>
+                        <span class="stat-label">Domaines d'expertise</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Années d'expérience</span>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('static', filename=me.cv_file) }}" class="btn-secondary" download>
+                    <i class="bi bi-download"></i> Télécharger mon CV
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="section-dark">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Compétences</span>
+            <h2 class="section-title">Mon expertise technique</h2>
+            <p class="section-description">
+                Des compétences diversifiées en simulation, modélisation et développement
+            </p>
+        </div>
+
+        <div class="skills-grid">
+            {% for category, skill_list in skills.items() %}
+            <div class="skill-category">
+                <h4 class="skill-category-title">{{ category }}</h4>
+                <div class="skill-tags">
+                    {% for skill in skill_list %}
+                    <span class="skill-tag">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+<section id="projects" class="section-light">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Portfolio</span>
+            <h2 class="section-title">Projets récents</h2>
+            <p class="section-description">
+                Une sélection de mes travaux les plus significatifs
+            </p>
+        </div>
+
+        <div class="projects-grid">
+            {% for project in featured_projects %}
+            <article class="project-card">
+                <div class="project-image">
+                    {% if project.image_file %}
+                    <img src="{{ url_for('static', filename=project.image_file) }}" alt="{{ project.title }}"
+                        loading="lazy">
+                    {% endif %}
+                    <div class="project-overlay">
+                        <span class="project-category">{{ project.category }}</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-description">{{ project.short_description }}</p>
+                    <div class="project-meta">
+                        <span class="project-year">{{ project.year }}</span>
                         {% if project.project_url %}
-                        <div class="card-footer bg-white border-0 text-end">
-                            <a href="{{ project.project_url }}" class="btn btn-outline-dark btn-sm" target="_blank">
-                                <i class="bi bi-github"></i> Voir le code
-                            </a>
-                        </div>
+                        <a href="{{ project.project_url }}" class="project-link" target="_blank">
+                            Voir le projet <i class="bi bi-arrow-right"></i>
+                        </a>
                         {% endif %}
                     </div>
-                </article>
-                {% endfor %}
-            </div>
-            <div class="text-center mt-4">
-                <a href="{{ url_for('projects') }}" class="btn btn-outline-primary">Voir tous les projets</a>
-            </div>
+                </div>
+            </article>
+            {% endfor %}
         </div>
-    </section>
 
-{% endblock %}
+        <div class="section-cta">
+            <a href="{{ url_for('projects') }}" class="btn-secondary">
+                Voir tous les projets
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
 
-{% block extra_scripts %}
-<script>
-    // Initialize Typed.js for typewriter effect
-    document.addEventListener('DOMContentLoaded', function() {
-        var typed = new Typed('#typewriter-text', {
-            strings: [
-                'Ingénieur en Génie Chimique',
-                'Développeur Web Full-Stack',
-                'Spécialiste en Simulation & Modélisation'
-            ],
-            typeSpeed: 60,
-            backSpeed: 40,
-            backDelay: 2000,
-            startDelay: 500,
-            loop: true,
-            showCursor: true,
-            cursorChar: '|'
-        });
-    });
-</script>
+<!-- Process Section (inspired by "From Consultation to Captivating Imagery") -->
+<section id="process" class="section-dark">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Ma méthodologie</span>
+            <h2 class="section-title">Du problème à la solution</h2>
+            <p class="section-description">
+                Une approche structurée pour garantir des résultats optimaux
+            </p>
+        </div>
+
+        <div class="process-timeline">
+            {% for step in process_steps %}
+            <div class="process-step">
+                <div class="process-number">{{ step.number }}</div>
+                <div class="process-content">
+                    <div class="process-icon">
+                        <i class="{{ step.icon }}"></i>
+                    </div>
+                    <h4 class="process-title">{{ step.title }}</h4>
+                    <p class="process-description">{{ step.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="section-light">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Services</span>
+            <h2 class="section-title">Ce que je peux faire pour vous</h2>
+        </div>
+
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="{{ service.icon }}"></i>
+                </div>
+                <h4 class="service-title">{{ service.title }}</h4>
+                <p class="service-description">{{ service.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section (inspired by "How about we capture something amazing together") -->
+<section id="contact" class="section-cta-fullscreen">
+    <div class="cta-content">
+        <h2 class="cta-title">
+            Prêt à collaborer sur<br>
+            quelque chose d'incroyable ?
+        </h2>
+        <p class="cta-description">
+            Que vous cherchiez une expertise en simulation, en modélisation ou en développement,
+            j'aimerais collaborer et donner vie à vos idées. Prêt à transformer vos défis en solutions ?
+        </p>
+        <a href="mailto:{{ me.email }}" class="btn-cta">
+            Travaillons ensemble
+            <i class="bi bi-arrow-down-short"></i>
+        </a>
+    </div>
+</section>
+
 {% endblock %}

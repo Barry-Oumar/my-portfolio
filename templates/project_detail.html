@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
-{% block main %}
+{% block title %}{{ project.title }}{% endblock %}
+{% block content %}
 <article class="py-5 reveal-on-scroll">
   <div class="container">
     <div class="row g-4">
@@ -27,7 +28,7 @@
           </div>
           <div class="mt-3">
             {% if project.project_url %}
-              <a class="btn btn-primary w-100" href="{{ project.project_url }}" target="_blank" rel="noopener">Voir le projet</a>
+              <a class="btn btn-primary w-100" href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer">Voir le projet</a>
             {% endif %}
             <a class="btn btn-outline-secondary w-100 mt-2" href="{{ url_for('projects') }}">Retour aux projets</a>
           </div>

@@ -1,0 +1,356 @@
+{% extends "layout.html" %}
+
+{% block title %}Services{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-fullscreen hero-services">
+    <div class="hero-background">
+        <div class="hero-overlay"></div>
+    </div>
+    
+    <div class="hero-content">
+        <h1 class="hero-title">
+            MES<br>
+            <span class="hero-highlight">SERVICES</span>
+        </h1>
+        <p class="hero-subtitle">
+            Une expertise technique complète pour transformer vos défis en solutions innovantes.
+            De la simulation à la modélisation, en passant par le développement logiciel.
+        </p>
+    </div>
+
+    <div class="scroll-indicator">
+        <span>scroll down</span>
+        <div class="scroll-arrow">
+            <i class="bi bi-arrow-down"></i>
+        </div>
+    </div>
+</section>
+
+<!-- Services Détaillés -->
+<section class="section-light">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Expertise</span>
+            <h2 class="section-title">Ce que je peux faire pour vous</h2>
+        </div>
+
+        <div class="services-detailed-grid">
+            {% for service in services %}
+            <div class="service-card-detailed">
+                <div class="service-icon-large">
+                    <i class="{{ service.icon }}"></i>
+                </div>
+                <h3 class="service-title-large">{{ service.title }}</h3>
+                <p class="service-description-large">{{ service.description }}</p>
+                
+                <div class="service-features">
+                    <h4>Points clés :</h4>
+                    <ul>
+                        {% if 'Simulation' in service.title %}
+                        <li>Modélisation CFD (ANSYS Fluent)</li>
+                        <li>Analyse thermodynamique avancée</li>
+                        <li>Optimisation de procédés industriels</li>
+                        <li>Validation et vérification expérimentale</li>
+                        {% elif 'Python' in service.title %}
+                        <li>Applications web (Flask, Django)</li>
+                        <li>Scripts d'automatisation robustes</li>
+                        <li>Outils scientifiques (NumPy, SciPy, Pandas)</li>
+                        <li>Interfaces utilisateur modernes</li>
+                        {% elif 'Données' in service.title %}
+                        <li>Traitement de données techniques massives</li>
+                        <li>Visualisations interactives (Matplotlib, Plotly)</li>
+                        <li>Analyses statistiques et prédictives</li>
+                        <li>Rapports automatisés et dashboards</li>
+                        {% else %}
+                        <li>Méthodes d'optimisation multi-objectifs</li>
+                        <li>Analyse énergétique et exergétique</li>
+                        <li>Amélioration continue (DMAIC, Lean Six Sigma)</li>
+                        <li>Recommandations techniques documentées</li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="service-tags">
+                    {% if 'Simulation' in service.title %}
+                    <span class="tag">ANSYS Fluent</span>
+                    <span class="tag">CFD</span>
+                    <span class="tag">Thermodynamique</span>
+                    {% elif 'Python' in service.title %}
+                    <span class="tag">Flask</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Pandas</span>
+                    {% elif 'Données' in service.title %}
+                    <span class="tag">Matplotlib</span>
+                    <span class="tag">Plotly</span>
+                    <span class="tag">SQL</span>
+                    {% else %}
+                    <span class="tag">Optimisation</span>
+                    <span class="tag">Six Sigma</span>
+                    <span class="tag">Lean</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="section-dark">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Ma méthodologie</span>
+            <h2 class="section-title">Du problème à la solution</h2>
+            <p class="section-description">
+                Une approche structurée en 4 étapes pour garantir des résultats optimaux
+            </p>
+        </div>
+
+        <div class="process-timeline">
+            {% for step in process_steps %}
+            <div class="process-step">
+                <div class="process-number">{{ step.number }}</div>
+                <div class="process-content">
+                    <div class="process-icon">
+                        <i class="{{ step.icon }}"></i>
+                    </div>
+                    <h4 class="process-title">{{ step.title }}</h4>
+                    <p class="process-description">{{ step.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Technologies Section -->
+<section class="section-light" style="background: var(--color-bg-light);">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Outils & Technologies</span>
+            <h2 class="section-title">Mon arsenal technique</h2>
+        </div>
+
+        <div class="tech-categories">
+            <div class="tech-category">
+                <h3>Langages</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Python</div>
+                    <div class="tech-item">MATLAB</div>
+                    <div class="tech-item">SQL</div>
+                    <div class="tech-item">JavaScript</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>Simulation & Modélisation</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">ANSYS Fluent</div>
+                    <div class="tech-item">Aspen HYSYS</div>
+                    <div class="tech-item">Maple</div>
+                    <div class="tech-item">COMSOL</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>Frameworks & Libraries</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Flask</div>
+                    <div class="tech-item">NumPy</div>
+                    <div class="tech-item">Pandas</div>
+                    <div class="tech-item">Matplotlib</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section-cta-fullscreen" style="height: 60vh;">
+    <div class="cta-content">
+        <h2 class="cta-title">
+            Prêt à démarrer<br>
+            votre projet ?
+        </h2>
+        <p class="cta-description">
+            Contactez-moi pour discuter de vos besoins et découvrir comment mon expertise peut vous aider à atteindre vos objectifs.
+        </p>
+        <a href="{{ url_for('contact') }}" class="btn-cta">
+            Me contacter
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<style>
+/* Styles spécifiques à la page Services */
+.hero-services .hero-overlay {
+    background: linear-gradient(135deg, 
+        rgba(79, 70, 229, 0.9) 0%,
+        rgba(37, 99, 235, 0.8) 50%,
+        rgba(14, 165, 233, 0.9) 100%
+    );
+}
+
+.services-detailed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.service-card-detailed {
+    background: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card-detailed::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: var(--color-primary);
+    transition: height var(--transition-normal);
+}
+
+.service-card-detailed:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.service-card-detailed:hover::before {
+    height: 100%;
+}
+
+.service-icon-large {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: white;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.service-title-large {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-dark);
+}
+
+.service-description-large {
+    font-size: 1.05rem;
+    color: var(--color-text-gray);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-lg);
+}
+
+.service-features {
+    margin-bottom: var(--spacing-md);
+}
+
+.service-features h4 {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-dark);
+}
+
+.service-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-features li {
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text-gray);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.service-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--color-bg-light);
+    color: var(--color-primary);
+    border-radius: var(--border-radius-full);
+    font-size: 0.85rem;
+    font-weight: var(--font-weight-medium);
+}
+
+.tech-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.tech-category h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-dark);
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+}
+
+.tech-item {
+    padding: var(--spacing-md);
+    background: white;
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-fast);
+}
+
+.tech-item:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .services-detailed-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

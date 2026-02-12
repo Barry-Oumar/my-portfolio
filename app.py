@@ -1,52 +1,75 @@
-from flask import Flask, render_template, url_for, g
-# On importe toutes nos données depuis data.py
-from data import ME, PROJECTS, SKILLS, RESUME
+from flask import Flask, render_template
+from flask_frozen import Freezer
+
+# Import data
+# Import data
+from utils.data import (
+    ME, SKILLS, PROJECTS, EXPERIENCE, EDUCATION, 
+    SERVICES, PROCESS_STEPS, VOLUNTEERING
+)
 
 app = Flask(__name__)
+app.config['FREEZER_DESTINATION'] = 'build'
+app.config['FREEZER_RELATIVE_URLS'] = True
 
-# Contexte global pour passer des informations à tous les templates
-@app.context_processor
-def inject_global_vars():
-    return {
-        "me": ME,
-        "projects": PROJECTS,
-        "skills": SKILLS,
-        "resume": RESUME
-    }
+freezer = Freezer(app)
 
-# ==================================
-# ==== ROUTES PUBLIQUES ====
-# ==================================
+# Helper function to get featured projects
+def get_featured_projects():
+    return [p for p in PROJECTS if p.get('featured', False)]
 
-@app.route("/")
+# Routes
+@app.route('/')
 def index():
-    featured_projects = sorted(PROJECTS, key=lambda p: p['year'], reverse=True)[:3]
-    return render_template("index.html", featured_projects=featured_projects)
+    return render_template(
+        'index.html',
+        me=ME,
+        featured_projects=get_featured_projects(),
+        skills=SKILLS,
+        services=SERVICES,
+        process_steps=PROCESS_STEPS,
+        projects=PROJECTS
+    )
 
-@app.route("/projects/")
+@app.route('/projects/')
 def projects():
-    all_projects = sorted(PROJECTS, key=lambda p: p['year'], reverse=True)
-    return render_template("projects.html", projects=all_projects)
+    return render_template(
+        'projects.html',
+        me=ME,
+        projects=PROJECTS
+    )
 
-@app.route("/resume/")
-def resume():
-    return render_template("resume.html")
+@app.route('/services/')
+def services():
+    return render_template(
+        'services.html',
+        me=ME,
+        services=SERVICES,
+        process_steps=PROCESS_STEPS
+    )
 
-@app.route("/contact/")
+@app.route('/parcours/')
+def parcours():
+    return render_template(
+        'parcours.html',
+        me=ME,
+        skills=SKILLS,
+        experience=EXPERIENCE,
+        volunteering=VOLUNTEERING,
+        education=EDUCATION,
+        projects=PROJECTS
+    )
+
+@app.route('/contact/')
 def contact():
-    return render_template("contact.html")
-
-@app.route("/about/")
-def about():
-    # 'about.html' a été fusionné dans 'index.html' et 'resume.html'.
-    # Si vous voulez une page 'À Propos' dédiée, créez-la et décommentez.
-    # Pour l'instant, on redirige vers l'accueil.
-    return render_template("resume.html")
-
-# ==================================
-# ==== GESTION DES ERREURS ====
-# ==================================
+    return render_template(
+        'contact.html',
+        me=ME
+    )
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("404.html"), 404
+    return render_template('404.html', me=ME), 404
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)

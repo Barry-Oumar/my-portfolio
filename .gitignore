@@ -1,17 +1,212 @@
-# Dossiers d'environnement virtuel
-my_env/
-venv/
-.venv/
+# ==============================================================================
+# PORTFOLIO - OUMAR BARRY
+# .gitignore complet pour Flask + Python
+# ==============================================================================
 
-# Dossier de build (sera généré)
-build/
-
-# Fichiers et dossiers de cache
+# ========== Python ==========
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
-# Configuration locale VS Code
-.vscode/
+# C extensions
+*.so
 
-# Fichier des secrets locaux (si vous en avez)
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# ========== Virtual Environments ==========
 .env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+my_env/
+
+# ========== IDEs & Editors ==========
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# ========== OS Files ==========
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ========== Build Output ==========
+# Frozen-Flask build directory
+build/
+*.frozen
+
+# ========== Backup & Temporary Files ==========
+# Backup files
+*_old.*
+*_backup.*
+*.bak
+*.tmp
+*.temp
+redesigned_*
+
+# ========== Documentation (Optionnel) ==========
+# Si tu ne veux pas commiter ces fichiers markdown
+INDEX_FILES.md
+SUMMARY_REDESIGN.md
+MON_PORTFOLIO
+
+# ========== Logs ==========
+*.log
+logs/
+*.log.*
+
+# ========== Certificates & Keys ==========
+*.pem
+*.key
+*.cert
+*.crt
+
+# ========== Sensitive Data ==========
+.env.local
+.env.*.local
+secrets.json
+config.local.py
+
+# ========== Node.js (si tu utilises npm/webpack) ==========
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ========== Static Files (généré) ==========
+# Si tu génères des assets
+static/gen/
+.webassets-cache/
+
+# ========== Database ==========
+*.db
+*.sqlite
+*.sqlite3
+
+# ========== Custom ==========
+# Ajoute ici tes fichiers spécifiques à ignorer
+TODO.md
+NOTES.md

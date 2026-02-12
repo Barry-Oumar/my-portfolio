@@ -1,0 +1,565 @@
+{% extends "layout.html" %}
+
+{% block title %}Parcours{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-fullscreen hero-parcours">
+    <div class="hero-background">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+        <h1 class="hero-title">
+            MON<br>
+            <span class="hero-highlight">PARCOURS</span>
+        </h1>
+        <p class="hero-subtitle">
+            Découvrez mon histoire, mes compétences et mon expérience dans le domaine du génie chimique et de la
+            simulation.
+        </p>
+    </div>
+
+    <div class="scroll-indicator">
+        <span>scroll down</span>
+        <div class="scroll-arrow">
+            <i class="bi bi-arrow-down"></i>
+        </div>
+    </div>
+</section>
+
+<!-- About Me Section -->
+<section id="about" class="section-light">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">À propos</span>
+            <h2 class="section-title">Qui suis-je ?</h2>
+        </div>
+
+        <div class="about-detailed-grid">
+            <div class="about-image-large">
+                <img src="{{ url_for('static', filename=me.photo) }}" alt="{{ me.name }}">
+                <div class="about-badge">
+                    <i class="bi bi-award-fill"></i>
+                    <span>{{ me.title }}</span>
+                </div>
+            </div>
+
+            <div class="about-content-detailed">
+                <h3 class="about-name">{{ me.name }}</h3>
+                <p class="about-subtitle">{{ me.subtitle }}</p>
+                <p class="about-description">{{ me.about_text }}</p>
+
+                <div class="about-contact-info">
+                    <div class="contact-info-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <a href="mailto:{{ me.email }}">{{ me.email }}</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>{{ me.location }}</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <span>{{ me.phone }}</span>
+                    </div>
+                </div>
+
+                <div class="about-social">
+                    <a href="{{ me.linkedin }}" target="_blank" class="social-btn">
+                        <i class="bi bi-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="{{ me.github }}" target="_blank" class="social-btn">
+                        <i class="bi bi-github"></i> GitHub
+                    </a>
+                    <a href="{{ url_for('static', filename=me.cv_file) }}" download class="social-btn">
+                        <i class="bi bi-download"></i> Télécharger CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="section-dark">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Compétences</span>
+            <h2 class="section-title">Mon expertise technique</h2>
+        </div>
+
+        <div class="skills-grid-detailed">
+            {% for category, skill_list in skills.items() %}
+            <div class="skill-category-card">
+                <h3 class="skill-category-title">{{ category }}</h3>
+                <div class="skill-items">
+                    {% for skill in skill_list %}
+                    <span class="skill-badge">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section class="section-light">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Expérience</span>
+            <h2 class="section-title">Mon parcours professionnel</h2>
+        </div>
+
+        <div class="timeline" id="experience-timeline">
+            <div class="timeline-line"></div>
+            {% for exp in experience %}
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    {% if exp.logo %}
+                    <div class="timeline-logo">
+                        <img src="{{ url_for('static', filename=exp.logo) }}" alt="{{ exp.institution }}">
+                    </div>
+                    {% endif %}
+                    <div class="timeline-content">
+                        <span class="timeline-period">{{ exp.period }}</span>
+                        <h3 class="timeline-title">{{ exp.title }}</h3>
+                        <h4 class="timeline-institution">{{ exp.institution }}</h4>
+                        <p class="timeline-description">{{ exp.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section class="section-light" style="background: var(--color-bg-light);">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Formation</span>
+            <h2 class="section-title">Mon parcours académique</h2>
+        </div>
+
+        <div class="timeline" id="education-timeline">
+            <div class="timeline-line"></div>
+            {% for edu in education %}
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    {% if edu.logo %}
+                    <div class="timeline-logo">
+                        <img src="{{ url_for('static', filename=edu.logo) }}" alt="{{ edu.institution }}">
+                    </div>
+                    {% endif %}
+                    <div class="timeline-content">
+                        <span class="timeline-period">{{ edu.period }}</span>
+                        <h3 class="timeline-title">{{ edu.title }}</h3>
+                        <h4 class="timeline-institution">{{ edu.institution }}</h4>
+                        <p class="timeline-description">{{ edu.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Volunteering Section -->
+<section class="section-light">
+    <div class="container-section">
+        <div class="section-header-center">
+            <span class="section-label">Engagement</span>
+            <h2 class="section-title">Bénévolat & Activités</h2>
+        </div>
+
+        <div class="timeline" id="volunteering-timeline">
+            <div class="timeline-line"></div>
+            {% for vol in volunteering %}
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    {% if vol.logo %}
+                    <div class="timeline-logo">
+                        <img src="{{ url_for('static', filename=vol.logo) }}" alt="{{ vol.institution }}">
+                    </div>
+                    {% endif %}
+                    <div class="timeline-content">
+                        <span class="timeline-period">{{ vol.period }}</span>
+                        <h3 class="timeline-title">{{ vol.title }}</h3>
+                        <h4 class="timeline-institution">{{ vol.institution }}</h4>
+                        <p class="timeline-description">{{ vol.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- Stats Section -->
+<section class="section-dark">
+    <div class="container-section">
+        <div class="stats-grid-large">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="bi bi-briefcase-fill"></i>
+                </div>
+                <span class="stat-number">0+</span>
+                <span class="stat-label">Années d'expérience</span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="bi bi-code-slash"></i>
+                </div>
+                <span class="stat-number">{{ projects|length }}+</span>
+                <span class="stat-label">Projets réalisés</span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="bi bi-tools"></i>
+                </div>
+                <span class="stat-number">{{ skills|length }}</span>
+                <span class="stat-label">Domaines d'expertise</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section-cta-compact">
+    <div class="container-section">
+        <div class="cta-box-inline">
+            <div class="cta-content-inline">
+                <h2 class="cta-title-inline">Travaillons ensemble !</h2>
+                <p class="cta-description-inline">
+                    Vous avez un projet en tête ? Contactez-moi pour en discuter.
+                </p>
+            </div>
+            <a href="{{ url_for('contact') }}" class="btn-primary btn-large">
+                Me contacter
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<style>
+    /* Styles spécifiques à la page Parcours */
+    .hero-parcours .hero-overlay {
+        background: linear-gradient(135deg,
+                rgba(14, 165, 233, 0.9) 0%,
+                rgba(37, 99, 235, 0.8) 50%,
+                rgba(59, 130, 246, 0.9) 100%);
+    }
+
+    .about-detailed-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        /* Changed ratio to give more space to text */
+        gap: var(--spacing-2xl);
+        align-items: center;
+        /* Center vertically */
+    }
+
+    .about-image-large {
+        position: relative;
+        max-width: 400px;
+        /* Limit max width */
+        margin: 0 auto;
+        /* Center if smaller */
+    }
+
+    .about-image-large img {
+        width: 100%;
+        height: auto;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-xl);
+        object-fit: cover;
+    }
+
+    .about-badge {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 1rem 1.5rem;
+        border-radius: var(--border-radius-full);
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap;
+    }
+
+    .about-badge i {
+        color: var(--color-primary);
+        font-size: 1.25rem;
+    }
+
+    .about-content-detailed {
+        padding-top: 0;
+        /* Removed top padding */
+    }
+
+    .about-name {
+        font-size: 2.5rem;
+        font-weight: var(--font-weight-black);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .about-subtitle {
+        font-size: 1.25rem;
+        color: var(--color-primary);
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .about-description {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--color-text-gray);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .about-contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* Grid for contact info */
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-xl);
+        padding: var(--spacing-lg);
+        background: var(--color-bg-light);
+        border-radius: var(--border-radius-md);
+    }
+
+    .contact-info-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+
+    .contact-info-item i {
+        width: 40px;
+        height: 40px;
+        background: var(--color-primary);
+        color: white;
+        border-radius: var(--border-radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        /* Prevent icon shrinking */
+    }
+
+    .about-social {
+        display: flex;
+        gap: var(--spacing-md);
+        flex-wrap: wrap;
+    }
+
+    .social-btn {
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        color: var(--color-primary);
+        border: 2px solid var(--color-primary);
+        border-radius: var(--border-radius-full);
+        font-weight: var(--font-weight-semibold);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all var(--transition-normal);
+    }
+
+    .social-btn:hover {
+        background: var(--color-primary);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .skills-grid-detailed {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+    }
+
+    .skill-category-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: var(--spacing-lg);
+        border-radius: var(--border-radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .skill-category-title {
+        font-size: 1.25rem;
+        color: white;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .skill-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .skill-badge {
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.9);
+        border-radius: var(--border-radius-full);
+        font-size: 0.9rem;
+        transition: all var(--transition-fast);
+    }
+
+    .skill-badge:hover {
+        background: var(--color-accent);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .stats-grid-large {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-xl);
+    }
+
+    .stat-card {
+        text-align: center;
+        padding: var(--spacing-xl);
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--border-radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--color-accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        color: white;
+        margin: 0 auto var(--spacing-md);
+    }
+
+    .stat-card .stat-number {
+        display: block;
+        font-size: 3rem;
+        font-weight: var(--font-weight-black);
+        color: white;
+        line-height: 1;
+    }
+
+    .stat-card .stat-label {
+        display: block;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: var(--spacing-sm);
+    }
+
+    @media (max-width: 968px) {
+        .about-detailed-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .about-image-large {
+            max-width: 300px;
+        }
+    }
+
+    /* Fixed Timeline Logo Size */
+    .timeline-logo {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        background: white;
+        border-radius: var(--border-radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 1px solid var(--color-border);
+        padding: 0.5rem;
+    }
+
+    .timeline-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    /* Redesigned CTA Section */
+    .section-cta-compact {
+        padding: var(--spacing-2xl) 0;
+        background: var(--color-bg-light);
+    }
+
+    .cta-box-inline {
+        background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-xl);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-xl);
+        color: white;
+        box-shadow: var(--shadow-xl);
+    }
+
+    .cta-content-inline {
+        flex: 1;
+    }
+
+    .cta-title-inline {
+        font-size: 2rem;
+        font-weight: var(--font-weight-bold);
+        margin-bottom: var(--spacing-sm);
+        color: white;
+    }
+
+    .cta-description-inline {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+    }
+
+    .btn-large {
+        background: white;
+        color: var(--color-primary);
+        border: none;
+        padding: 1rem 2rem;
+        font-weight: var(--font-weight-bold);
+    }
+
+    .btn-large:hover {
+        background: var(--color-bg-light);
+        color: var(--color-primary-dark);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .cta-box-inline {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .timeline-logo {
+            width: 60px;
+            height: 60px;
+        }
+    }
+</style>
+{% endblock %}

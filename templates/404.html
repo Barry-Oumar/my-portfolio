@@ -2,11 +2,21 @@
 
 {% block title %}404 - Page non trouvée{% endblock %}
 
-{% block main %}
-<div class="text-center py-5">
-    <h1 class="display-1 text-primary">404</h1>
-    <h2>Page non trouvée</h2>
-    <p class="lead">Désolé, la page que vous cherchez n'existe pas ou a été déplacée.</p>
-    <a href="{{ url_for('index') }}" class="btn btn-primary mt-3">Retour à l'accueil</a>
-</div>
+{% block content %}
+<section class="section-light error-page">
+    <div class="container-section">
+        <div class="section-header-center">
+            <h1 class="error-code">404</h1>
+            <h2 class="section-title">Page non trouvée</h2>
+            <p class="section-description">
+                Désolé, la page que vous cherchez n'existe pas ou a été déplacée.
+            </p>
+            <div class="section-cta">
+                <a href="{{ url_for('index') }}" class="btn-primary">
+                    <i class="bi bi-arrow-left"></i> Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
