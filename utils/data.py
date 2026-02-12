@@ -105,7 +105,7 @@ PROJECTS = [
         "technologies": ["ANSYS Fluent", "CFD", "Transfert thermique", "Énergies renouvelables"],
         "image_file": "images/solaire_cfd.png",
         "project_url": None,
-        "pdf_file": "docs/rapport_collecteur_solaire.pdf",
+        "pdf_file": None,
         "featured": False
     },
     {
@@ -118,7 +118,7 @@ PROJECTS = [
         "technologies": ["Python", "MATLAB", "NumPy", "Analyse numérique"],
         "image_file": "images/finite_difference.JPG",
         "project_url": None,
-        "pdf_file": "docs/rapport_differences_finies.pdf",
+        "pdf_file": None,
         "featured": False
     }
 ]
