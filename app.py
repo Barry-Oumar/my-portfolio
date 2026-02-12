@@ -9,10 +9,8 @@ from utils.data import (
 )
 
 app = Flask(__name__)
-app.config['FREEZER_DESTINATION'] = 'build'
-app.config['FREEZER_RELATIVE_URLS'] = True
 
-freezer = Freezer(app)
+# Note: Configuration Freezer est maintenant dans freeze.py uniquement
 
 # Helper function to get featured projects
 def get_featured_projects():
