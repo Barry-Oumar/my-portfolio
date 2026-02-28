@@ -126,10 +126,10 @@ PROJECTS = [
 # Expérience professionnelle & Stages
 EXPERIENCE = [
     {
-        "title": "Stage Technique",
-        "institution": "Office Chérifien des Phosphates (OCP)",
+        "title": "Stagiaire en Efficacité Énergétique",
+        "institution": "Office Chérifien des Phosphates (OCP), Jorf Lasfar",
         "period": "Été 2024",
-        "description": "Stage d'observation et d'apprentissage dans une unité de production de phosphates at Khouribga. Analyse des procédés de traitement et d'enrichissement des minerais.",
+        "description": "Analyse des consommations des utilités (électricité, vapeur, eau de mer) → pertes évaluées à 72,9 M MAD. Élaboration d’un tableau de bord énergétique (Excel) pour le suivi des performances et la réduction des écarts. Formulation de recommandations techniques pour améliorer l’efficacité énergétique globale du si",
         "logo": "images/ocp.jpg"
     }
 ]
